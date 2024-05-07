@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.5s ease;
+}
+@layer base{
+    body{
+        overflow-x: hidden;
+    }
+}
+@layer components{
+    a{
+        text-decoration: none;
+        color: #000000;
+    }
+    a:hover{
+        text-decoration: none;
+        color: #000000;
+    }
+    .input-box{
+        @apply w-full text-sm bg-transparent border mb-2 font-semibold  px-5 py-3 rounded-xl outline-none
+    }
+    .btn-primary{
+        @apply w-full text-sm bg-blue-500 hover:bg-black text-white p-2 rounded my-1
+    }
+     .icon-btn{
+        @apply text-xl text-slate-400 cursor-pointer hover:text-blue-500
+    }
+    .input-label{
+        @apply text-xs text-slate-400
+    }
+}
