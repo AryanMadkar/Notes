@@ -166,7 +166,7 @@ app.get("/get-user",authenticattoken ,async (req, res) => {
   }
   return res.json({
     error:false,
-    user:{fullname:isUser.fullname,email:isUser.email,"_id":isUser._id,createdon:isUser.createdon,updatedon:isUser.createdOn},
+    user:{fullname:isUser.fullName,email:isUser.email,"_id":isUser._id,createdon:isUser.createdOn,updatedon:isUser.createdOn},
     message:"user fetched successfully"
   })
 })

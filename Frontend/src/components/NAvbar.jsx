@@ -7,6 +7,7 @@ const NAvbar = () => {
   const [searchquery,setsearchquery]=useState("")
   const navigate = useNavigate
   const onlogout=()=>{
+    localStorage.clear()
     navigate("/login")
   }
   const handlesearch =()=>{
@@ -25,7 +26,7 @@ const NAvbar = () => {
         handlesearch={handlesearch}
         onclearsearch={onclearsearch}
       />
-      <Portfolioinfo onLogout={onlogout}/>
+      <Portfolioinfo  onLogout={onlogout}/>
 
     </div>
   );

@@ -1,15 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NAvbar from "../components/NAvbar";
 import Notecard from "../components/Notecard";
 import { MdAdd } from "react-icons/md";
 import AddEditnote from "./AddEditnote";
 import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
+import axiosinstance from "../../../Backend/utils/axiosinstance";
 const Home = () => {
   const [openAddeditmodel, setopenaddeditmodel] = useState({
     isShown: false,
     type: "add",
     data: null,
   });
+
+  const[userinfo, setuserinfo]=useState(null)
+  const navigate = useNavigate()
+  const getuserinfo =  async()=>{
+    try{
+      const response = await axiosinstance.get("/get-user")
+      if (response.data && response.data.user.user) {
+        setuserinfo(response.data.user.user);
+      }
+    }catch(error){
+      if(error.response.status === 401){
+        localStorage.clear();
+        navigate("/login")
+      }
+    }
+  }
+  useEffect(()=>{
+    getuserinfo();
+    return()=>{}
+  },[])
 
   return (
     <div>

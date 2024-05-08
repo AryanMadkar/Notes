@@ -1,12 +1,13 @@
+require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-function authenticattoken(req, res, next) {
+function authenticattoken(req, res) {
   const authHeader = req.headers["Authorization"];
-  const token = authHeader && authHeader.split("")[1];
-  if (!token) return res.sendStatus(401);
+  const token = authHeader && authHeader.split(" ")[1];
+  if (!token) return res.send("error due to no token");
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-      if (err) return res.sendStatus(401);
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) return res.send("error due to wrong token");
       req.user = user;
       next();
     });
@@ -15,4 +16,4 @@ function authenticattoken(req, res, next) {
   }
 }
 
-module.exports = {authenticattoken};
+module.exports = { authenticattoken };
